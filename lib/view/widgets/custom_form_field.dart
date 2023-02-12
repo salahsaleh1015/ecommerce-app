@@ -23,7 +23,11 @@ class CustomFormField extends StatelessWidget {
                   color: AppConstance.kPrimaryColor
               )
           ),
-          hintText: title),
+          hintText: title,
+      hintStyle: TextStyle(
+          color: Colors.black
+      )
+      ),
     );
   }
 }

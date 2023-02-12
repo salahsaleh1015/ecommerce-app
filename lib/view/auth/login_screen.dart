@@ -1,11 +1,15 @@
 import 'package:ecommerce_app/constance.dart';
+import 'package:ecommerce_app/view/auth/register_screen.dart';
+import 'package:ecommerce_app/view/widgets/custom_buton.dart';
 import 'package:ecommerce_app/view/widgets/custom_social_buttom.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../core/view_model/auth_view_model.dart';
 import '../widgets/custom_form_field.dart';
 import '../widgets/custom_text.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends GetWidget<AuthViewModel> {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
@@ -68,31 +72,24 @@ class LoginScreen extends StatelessWidget {
                 height: 20,
               ),
               Row(
-                children: const [
-                  Spacer(),
-                  CustomText(
-                      title: "forget password? ",
-                      fontSize: 17,
-                      color: Colors.grey)
+                children:  [
+                  const Spacer(),
+                  GestureDetector(
+                    onTap: (){
+                      Get.to(const RegisterScreen());
+                    },
+                    child: const CustomText(
+                        title: "forget password? ",
+                        fontSize: 17,
+                        color: Colors.grey),
+                  )
                 ],
               ),
               const SizedBox(
                 height: 15,
               ),
-              Container(
-                height: 50,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: AppConstance.kPrimaryColor,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: const Center(
-                  child: Text("SIGN IN",style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontWeight: FontWeight.normal
-                  )),
-                ),
+              const CustomButton(
+                title: "SIGN IN ",
               ),
               const SizedBox(
                 height: 10,
@@ -103,14 +100,20 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const CustomSocialButton(
+               CustomSocialButton(
+                onTap: (){
+                  controller.sinInWithFacebookMethod();
+                },
                 text: "Sign In with Facebook",
                 image: "images/Icon_Facebook.png",
               ),
               const SizedBox(
                 height: 10,
               ),
-              const CustomSocialButton(
+               CustomSocialButton(
+                onTap: (){
+                  controller.sinInWithGoogleMethod();
+                },
                 text: "Sign In with google",
                 image: "images/icons8_Google_2.png",
               ),
