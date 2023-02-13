@@ -57,4 +57,16 @@ class AuthViewModel extends GetxController {
       Get.snackbar('login error','error massage' , snackPosition: SnackPosition.BOTTOM,colorText: Colors.black);
     }
   }
+  void registerWithEmailAndPassword()async{
+    try{
+
+      await _auth.createUserWithEmailAndPassword(email: email, password: password).then((value) {
+        Get.offAll( HomeScreen());
+      });
+    }catch(e){
+      print(e);
+
+      Get.snackbar('login error','error massage' , snackPosition: SnackPosition.BOTTOM,colorText: Colors.black);
+    }
+  }
 }

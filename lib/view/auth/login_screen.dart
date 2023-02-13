@@ -90,7 +90,7 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                     const Spacer(),
                     GestureDetector(
                       onTap: (){
-                        Get.to(const RegisterScreen());
+                        Get.to( RegisterScreen());
                       },
                       child: const CustomText(
                           title: "forget password? ",
