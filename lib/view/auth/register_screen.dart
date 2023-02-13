@@ -65,7 +65,8 @@ class RegisterScreen extends StatelessWidget {
               const SizedBox(
                 height: 40,
               ),
-              const CustomButton(
+               CustomButton(
+                onTap: (){},
                 title: "SIGN UP ",
               ),
 
