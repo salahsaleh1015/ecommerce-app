@@ -29,6 +29,7 @@ class CustomSocialButton extends StatelessWidget {
               ),
                Center(
                 child: CustomText(
+                    fontWeight: FontWeight.normal,
                     title: text,
                     fontSize: 16,
                     color: Colors.black),

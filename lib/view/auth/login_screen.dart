@@ -33,11 +33,13 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
                     CustomText(
+                      fontWeight: FontWeight.bold,
                       title: "Welcome,",
                       color: Colors.black,
                       fontSize: 35,
                     ),
                     CustomText(
+                        fontWeight: FontWeight.bold,
                         title: "Sign",
                         fontSize: 17,
                         color: AppConstance.kPrimaryColor)
@@ -47,6 +49,7 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                   height: 10,
                 ),
                 const CustomText(
+                    fontWeight: FontWeight.normal,
                     title: "Sign in to Continue",
                     fontSize: 16,
                     color: Colors.grey),
@@ -54,6 +57,7 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                   height: 50,
                 ),
                 const CustomText(
+                    fontWeight: FontWeight.normal,
                     title: "Email", fontSize: 16, color: Colors.grey),
                 CustomFormField(
                   title: "iamdavid@gmail.com",
@@ -70,6 +74,7 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                   height: 30,
                 ),
                 const CustomText(
+                    fontWeight: FontWeight.normal,
                     title: "password", fontSize: 16, color: Colors.grey),
                 CustomFormField(
                   title: "*********",
@@ -95,6 +100,7 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                       child: const CustomText(
                           title: "forget password? ",
                           fontSize: 17,
+                          fontWeight: FontWeight.normal,
                           color: Colors.grey),
                     )
                   ],
@@ -116,6 +122,7 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                 ),
                 const Center(
                     child: CustomText(
+                        fontWeight: FontWeight.bold,
                         title: "-OR-", fontSize: 20, color: Colors.black)),
                 const SizedBox(
                   height: 10,

@@ -2,6 +2,7 @@ import 'package:ecommerce_app/core/utils/binding.dart';
 import 'package:ecommerce_app/view/auth/login_screen.dart';
 import 'package:ecommerce_app/view/auth/register_screen.dart';
 import 'package:ecommerce_app/view/control/control.dart';
+import 'package:ecommerce_app/view/home/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       initialBinding: Binding(),
       debugShowCheckedModeBanner: false,
       title: 'ecommerce app',
-      home:  const ControlView(),
+      home: const ControlView(),
     );
   }
 }

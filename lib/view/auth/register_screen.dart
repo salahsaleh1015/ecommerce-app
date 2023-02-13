@@ -32,6 +32,7 @@ class RegisterScreen extends GetWidget<AuthViewModel> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children:  [
                 const CustomText(
+                  fontWeight: FontWeight.bold,
                   title: "Sign Up",
                   color: Colors.black,
                   fontSize: 35,
@@ -40,6 +41,7 @@ class RegisterScreen extends GetWidget<AuthViewModel> {
                   height: 30,
                 ),
                 const CustomText(
+                    fontWeight: FontWeight.normal,
                     title: "name", fontSize: 16, color: Colors.grey),
                 CustomFormField(
                   title: "David Spade",
@@ -56,6 +58,7 @@ class RegisterScreen extends GetWidget<AuthViewModel> {
                   height: 30,
                 ),
                 const CustomText(
+                    fontWeight: FontWeight.normal,
                     title: "Email", fontSize: 16, color: Colors.grey),
                 CustomFormField(
 
@@ -73,6 +76,7 @@ class RegisterScreen extends GetWidget<AuthViewModel> {
                   height: 30,
                 ),
                 const CustomText(
+                    fontWeight: FontWeight.normal,
                     title: "password", fontSize: 16, color: Colors.grey),
                 CustomFormField(
                   title: "*********",
