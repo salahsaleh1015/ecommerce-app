@@ -19,9 +19,16 @@ class HomeScreen extends StatelessWidget {
     'a',
     'a',
   ];
+  FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: (){
+      //     _auth.signOut();
+      //   },
+      //
+      // ),
       body: Container(
         padding: const EdgeInsets.only(top: 80, right: 20, left: 20),
         child: SingleChildScrollView(
