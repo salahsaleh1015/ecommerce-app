@@ -3,7 +3,10 @@ import 'package:ecommerce_app/view/auth/login_screen.dart';
 import 'package:ecommerce_app/view/widgets/custom_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+
+import '../../core/view_model/home_view_model.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -23,12 +26,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: (){
-      //     _auth.signOut();
-      //   },
-      //
-      // ),
+
       body: Container(
         padding: const EdgeInsets.only(top: 80, right: 20, left: 20),
         child: SingleChildScrollView(
@@ -71,7 +69,6 @@ class HomeScreen extends StatelessWidget {
                 height: 20,
               ),
               _productList(),
-
             ],
           ),
         ),
@@ -106,13 +103,13 @@ class HomeScreen extends StatelessWidget {
             return Column(
               children: [
                 Container(
-                  child: Image.asset('images/Icon_Mens Shoe.png'),
                   height: 60,
                   width: 60,
                   decoration: BoxDecoration(
                     color: Colors.grey.shade100,
                     borderRadius: BorderRadius.circular(20),
                   ),
+                  child: Image.asset('images/Icon_Mens Shoe.png'),
                 ),
                 CustomText(
                     title: names[i],
@@ -130,30 +127,49 @@ class HomeScreen extends StatelessWidget {
           itemCount: names.length),
     );
   }
-  Widget _productList(){
+
+  Widget _productList() {
     return SizedBox(
       height: 350,
       child: ListView.separated(
           scrollDirection: Axis.horizontal,
-          itemBuilder: (context , i){
+          itemBuilder: (context, i) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image.asset('images/Image.png'),
-                const CustomText(title: "BeoPlay Speaker", fontSize: 17, color: Colors.black, fontWeight: FontWeight.bold),
-                SizedBox(
+                const CustomText(
+                    title: "BeoPlay Speaker",
+                    fontSize: 17,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+                const SizedBox(
                   height: 3,
                 ),
-                const CustomText(title: "Bang and Olufsen", fontSize: 12, color: Colors.grey, fontWeight: FontWeight.normal),
-                SizedBox(
+                const CustomText(
+                    title: "Bang and Olufsen",
+                    fontSize: 12,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.normal),
+                const SizedBox(
                   height: 3,
                 ),
-                const CustomText(title: "\$755", fontSize: 14, color: AppConstance.kPrimaryColor, fontWeight: FontWeight.bold),
+                const CustomText(
+                    title: "\$755",
+                    fontSize: 14,
+                    color: AppConstance.kPrimaryColor,
+                    fontWeight: FontWeight.bold),
               ],
             );
-          }, separatorBuilder: (context , i){
-        return const SizedBox(width: 10,);
-      }, itemCount: names.length),
+          },
+          separatorBuilder: (context, i) {
+            return const SizedBox(
+              width: 10,
+            );
+          },
+          itemCount: names.length),
     );
   }
+
+
 }
