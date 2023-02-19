@@ -1,12 +1,13 @@
 import 'package:ecommerce_app/constance.dart';
 import 'package:ecommerce_app/core/view_model/auth_view_model.dart';
+import 'package:ecommerce_app/core/view_model/control_view_model.dart';
 import 'package:ecommerce_app/view/auth/login_screen.dart';
-import 'package:ecommerce_app/view/home/home_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
-import '../../core/view_model/home_view_model.dart';
+
 
 class ControlView extends GetWidget<AuthViewModel> {
   const ControlView({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class ControlView extends GetWidget<AuthViewModel> {
     return Obx(() {
       return (Get.find<AuthViewModel>().user == null)
           ? LoginScreen()
-          : GetBuilder<HomeViewModel>(
+          : GetBuilder<ControlViewModel>(
             builder:(controller)=> Scaffold(
               body: controller.selectedScreen,
                 bottomNavigationBar: _buildBottomNavBar(),
@@ -26,8 +27,8 @@ class ControlView extends GetWidget<AuthViewModel> {
   }
 
   Widget _buildBottomNavBar() {
-    return GetBuilder<HomeViewModel>(
-      init: HomeViewModel(),
+    return GetBuilder<ControlViewModel>(
+      init: ControlViewModel(),
       builder: (controller) => BottomNavigationBar(
           currentIndex: controller.bottomNavIndex,
           onTap: (index) {

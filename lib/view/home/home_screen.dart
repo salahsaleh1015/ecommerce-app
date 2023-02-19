@@ -1,14 +1,16 @@
 import 'package:ecommerce_app/constance.dart';
+import 'package:ecommerce_app/core/view_model/home_view_model.dart';
 import 'package:ecommerce_app/view/auth/login_screen.dart';
+import 'package:ecommerce_app/view/home/details_screens.dart';
 import 'package:ecommerce_app/view/widgets/custom_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
-import '../../core/view_model/home_view_model.dart';
 
-class HomeScreen extends StatelessWidget {
+
+class HomeScreen extends GetWidget<HomeViewModel>{
   HomeScreen({Key? key}) : super(key: key);
   List<String> names = [
     'a',
@@ -22,54 +24,59 @@ class HomeScreen extends StatelessWidget {
     'a',
     'a',
   ];
-  FirebaseAuth _auth = FirebaseAuth.instance;
+ // FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return GetBuilder<HomeViewModel>(
+      //init: Get.find(),
+      builder:(controller)=>controller.loading.value?const Center(
+        child: CircularProgressIndicator(),
+      ) : Scaffold(
 
-      body: Container(
-        padding: const EdgeInsets.only(top: 80, right: 20, left: 20),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _searchFormField(),
-              const SizedBox(
-                height: 30,
-              ),
-              const CustomText(
-                  fontWeight: FontWeight.bold,
-                  title: "Categories",
-                  fontSize: 20,
-                  color: Colors.black),
-              const SizedBox(
-                height: 10,
-              ),
-              _categoryList(),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  CustomText(
-                      title: "Best Selling",
-                      fontSize: 20,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
-                  CustomText(
-                      title: "See all",
-                      fontSize: 15,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              _productList(),
-            ],
+        body: Container(
+          padding: const EdgeInsets.only(top: 80, right: 20, left: 20),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _searchFormField(),
+                const SizedBox(
+                  height: 30,
+                ),
+                const CustomText(
+                    fontWeight: FontWeight.bold,
+                    title: "Categories",
+                    fontSize: 20,
+                    color: Colors.black),
+                const SizedBox(
+                  height: 10,
+                ),
+                _categoryList(),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    CustomText(
+                        title: "Best Selling",
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                    CustomText(
+                        title: "See all",
+                        fontSize: 15,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                _productList(),
+              ],
+            ),
           ),
         ),
       ),
@@ -95,79 +102,84 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _categoryList() {
-    return Container(
-      height: 100,
-      child: ListView.separated(
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, i) {
-            return Column(
-              children: [
-                Container(
-                  height: 60,
-                  width: 60,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade100,
-                    borderRadius: BorderRadius.circular(20),
+    return GetBuilder<HomeViewModel>(
+      builder:(controller)=> Container(
+        height: 100,
+        child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, i) {
+              return Column(
+                children: [
+                  Container(
+                    height: 60,
+                    width: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade100,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Image.network(controller.categoryModel[i].image),
                   ),
-                  child: Image.asset('images/Icon_Mens Shoe.png'),
-                ),
-                CustomText(
-                    title: names[i],
-                    fontSize: 15,
-                    color: Colors.black,
-                    fontWeight: FontWeight.normal)
-              ],
-            );
-          },
-          separatorBuilder: (context, i) {
-            return const SizedBox(
-              width: 10,
-            );
-          },
-          itemCount: names.length),
+                  CustomText(
+                      title: controller.categoryModel[i].name,
+                      fontSize: 15,
+                      color: Colors.black,
+                      fontWeight: FontWeight.normal)
+                ],
+              );
+            },
+            separatorBuilder: (context, i) {
+              return const SizedBox(
+                width: 10,
+              );
+            },
+            itemCount: controller.categoryModel.length),
+      ),
     );
   }
 
   Widget _productList() {
-    return SizedBox(
-      height: 350,
-      child: ListView.separated(
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, i) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.asset('images/Image.png'),
-                const CustomText(
-                    title: "BeoPlay Speaker",
-                    fontSize: 17,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold),
-                const SizedBox(
-                  height: 3,
+    return GetBuilder<HomeViewModel>(
+      builder:(controller)=> SizedBox(
+        height: 350,
+        child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, i) {
+              return GestureDetector(
+                onTap: (){
+                  Get.to(DetailsScreen(
+                    model: controller.productModel[i],
+                  ));
+                },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.network(controller.productModel[i].image!),
+                     CustomText(
+                        title: controller.productModel[i].name!,
+                        fontSize: 17,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                    const SizedBox(
+                      height: 3,
+                    ),
+
+
+                     CustomText(
+                        title: "${controller.productModel[i].price}\$",
+                        fontSize: 14,
+                        color: AppConstance.kPrimaryColor,
+                        fontWeight: FontWeight.bold),
+                  ],
                 ),
-                const CustomText(
-                    title: "Bang and Olufsen",
-                    fontSize: 12,
-                    color: Colors.grey,
-                    fontWeight: FontWeight.normal),
-                const SizedBox(
-                  height: 3,
-                ),
-                const CustomText(
-                    title: "\$755",
-                    fontSize: 14,
-                    color: AppConstance.kPrimaryColor,
-                    fontWeight: FontWeight.bold),
-              ],
-            );
-          },
-          separatorBuilder: (context, i) {
-            return const SizedBox(
-              width: 10,
-            );
-          },
-          itemCount: names.length),
+              );
+            },
+            separatorBuilder: (context, i) {
+              return const SizedBox(
+                width: 10,
+              );
+            },
+            itemCount:controller.productModel.length),
+      ),
     );
   }
 
