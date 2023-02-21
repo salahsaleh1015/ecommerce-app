@@ -17,7 +17,7 @@ class ControlViewModel extends GetxController{
             _selectedScreen = HomeScreen();
             break;
          case 1:
-            _selectedScreen = const CartScreen();
+            _selectedScreen =  CartScreen();
             break;
          case 2:
             _selectedScreen = const ProfileScreen();
